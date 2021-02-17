@@ -2,7 +2,13 @@
 <div class="row">
     <h1 class="text-center">Edit Campground</h1>
     <div class="col-6 offset-3">
-        <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" novalidate class="needs-validation">
+        <form
+            action="/campgrounds/<%= campground._id %>?_method=PUT"
+            method="POST"
+            novalidate
+            class="needs-validation"
+            enctype="multipart/form-data"
+        >
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input
@@ -28,18 +34,6 @@
                 <div class="valid-feedback">Looks good!</div>
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">Image Url</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="image"
-                    name="campground[image]"
-                    value="<%= campground.image %>"
-                    required
-                />
-                <div class="valid-feedback">Looks good!</div>
-            </div>
-            <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
                 <div class="input-group">
                     <span class="input-group-text" id="price-label">$</span>
@@ -58,6 +52,19 @@
                 </div>
             </div>
             <div class="mb-3">
+                <% campground.images.forEach((img, i) => { %>
+                <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="" />
+                <div class="form-check-inline">
+                    <input type="checkbox" name="deleteImages[]" id="image-<%= i %>" value="<%= img.filename %>" />
+                </div>
+                <label for="image-<%= i %>">Delete</label>
+                <% }) %>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Images</label>
+                <input class="form-control" type="file" id="image" name="image" accept=".jpg,.jpeg,.png" multiple />
+            </div>
+            <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control" id="description" name="campground[description]" rows="10" required>
 <%= campground.description %>
@@ -68,6 +75,8 @@
                 <input type="submit" class="btn btn-info" value="Update Campground" />
             </div>
         </form>
-        <a href="/campgrounds/<%= campground._id %>">Back To Campground</a>
+        <div class="mb-3">
+            <a href="/campgrounds/<%= campground._id %>">Back To Campground</a>
+        </div>
     </div>
 </div>
