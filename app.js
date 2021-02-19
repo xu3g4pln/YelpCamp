@@ -98,7 +98,7 @@ app.use(
                 "'self'",
                 "blob:",
                 "data:",
-                "https://res.cloudinary.com/daldc0mey/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
+                `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/`, //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
                 "https://source.unsplash.com/",
                 "https://images.unsplash.com/",
             ],
