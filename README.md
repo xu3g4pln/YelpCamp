@@ -1,7 +1,7 @@
 # YelpCamp
 YelpCamp is a RESTful website about campgrounds.
 
-## Requirements
+## Prerequisites
 * Node.js
 * npm
 * mongoDB
